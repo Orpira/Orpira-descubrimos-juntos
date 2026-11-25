@@ -19,7 +19,7 @@ import { adventures } from '../content';
 </section>
 </Base>
 <script>
-import { availableOffline, load, setOffline } from '../local';
+import { availableOffline, canDownloadOffline, load, offlineSetupMessage, setOffline } from '../local';
 async function render() {
   const data = load();
   const worlds = new Set();
@@ -51,6 +51,10 @@ document.querySelector<HTMLFormElement>('#collection')?.addEventListener('submit
   const items = [...document.querySelectorAll<HTMLLIElement>('[data-section="2"] [data-slug]')]
     .filter(item => item.dataset.world === world);
   if (!button || !status || items.length === 0) return;
+  if (!canDownloadOffline()) {
+    status.textContent = offlineSetupMessage;
+    return;
+  }
   button.disabled = true;
   let saved = 0;
   try {

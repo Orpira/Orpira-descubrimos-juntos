@@ -21,20 +21,26 @@ export function save(change: (data: LocalData) => void): void {
   localStorage.setItem(storageKey, JSON.stringify(data));
 }
 
+export const offlineSetupMessage = 'Las descargas necesitan que la aplicación se cargue primero con conexión. En localhost, usa la vista previa de revisión.';
+
+export function canDownloadOffline(): boolean {
+  return 'caches' in window && Boolean(navigator.serviceWorker?.controller);
+}
+
 export async function availableOffline(path: string): Promise<boolean> {
-  if (!('caches' in window)) return false;
+  if (!canDownloadOffline()) return false;
   return Boolean(await (await caches.open(downloadCache)).match(path));
 }
 
 export async function setOffline(path: string, desired: boolean): Promise<void> {
   if (!('caches' in window)) throw new Error('Storage unavailable');
+  if (desired && !canDownloadOffline()) throw new Error(offlineSetupMessage);
   const cache = await caches.open(downloadCache);
   if (!desired) {
     await cache.delete(path);
     return;
   }
-  if (!(await navigator.serviceWorker?.getRegistration())) throw new Error('Worker unavailable');
   const response = await fetch(path, { cache: 'reload' });
-  if (!response.ok || response.redirected) throw new Error('Download unavailable');
+  if (!response.ok || response.redirected || !response.headers.get('Content-Type')?.toLowerCase().startsWith('text/html')) throw new Error('Download unavailable');
   await cache.put(path, response);
 }

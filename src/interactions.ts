@@ -1,4 +1,4 @@
-import { availableOffline, load, save, setOffline } from './local';
+import { availableOffline, canDownloadOffline, load, offlineSetupMessage, save, setOffline } from './local';
 
 export function bindAdventure() {
   const article = document.querySelector<HTMLElement>('#adventure');
@@ -76,6 +76,10 @@ export function bindAdventure() {
   }
 
   const download = bind('download', async button => {
+    if (!canDownloadOffline()) {
+      say(offlineSetupMessage);
+      return;
+    }
     const desired = !(await availableOffline(location.pathname));
     await setOffline(location.pathname, desired);
     button.setAttribute('aria-pressed', String(desired));

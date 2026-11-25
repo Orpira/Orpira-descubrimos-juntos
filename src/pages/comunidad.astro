@@ -43,7 +43,7 @@ const program = sessions.flatMap(([slug, objective]) => {
   }
 </style>
 <script>
-import { availableOffline, setOffline, workshopKey } from '../local';
+import { availableOffline, canDownloadOffline, offlineSetupMessage, setOffline, workshopKey } from '../local';
 import { splitTeams } from '../workshop.mjs';
 
 const form = document.querySelector<HTMLFormElement>('#workshop');
@@ -137,8 +137,8 @@ download?.addEventListener('click', async () => {
   download.disabled = true;
   try {
     if (!(await availableOffline(path))) {
-      if (!navigator.serviceWorker?.controller) {
-        say('La aplicación aún no está lista para descargar fichas. Usa la vista previa de revisión y vuelve a intentarlo con conexión.');
+      if (!canDownloadOffline()) {
+        say(offlineSetupMessage);
         return;
       }
       await setOffline(path, true);
