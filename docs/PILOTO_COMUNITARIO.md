@@ -22,3 +22,15 @@ Desde Comunidad → Evaluar taller, prepara e imprime un resumen agregado. Las r
 - Valoración agregada y voluntaria de adultos sobre si repetirían la sesión.
 
 Registrar observaciones del taller sin nombres, fotos ni relatos privados. Una revisión editorial posterior decide si la ficha permanece en revisión o pasa a aprobación. Ante cualquier incidente, corregir y volver a ensayar antes de publicarla.
+
+## Evidencia del ensayo físico pendiente
+
+| Qué observar | Qué registrar |
+| --- | --- |
+| Preparación | Si se consiguieron papel, libros y cartón. Indicar qué faltó o sobró. |
+| Realización | Duración real. Anotar qué paso exigió una explicación adicional. |
+| Resultado | Comparar cuánto soportó cada diseño con la misma tarjeta y distancia. |
+| Seguridad y accesibilidad | Indicar si se interrumpió la actividad o hizo falta una adaptación. |
+| Decisión editorial | Aprobar, ajustar y volver a ensayar, o mantener en revisión. |
+
+Anotar únicamente observaciones de la actividad. El resultado del ensayo físico sigue pendiente.
