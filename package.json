@@ -1,0 +1,33 @@
+{
+  "name": "descubrimos-juntos",
+  "version": "0.1.0",
+  "description": "",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "build": "ASTRO_TELEMETRY_DISABLED=1 astro build && node scripts/offline.mjs",
+    "preview": "astro preview",
+    "check": "ASTRO_TELEMETRY_DISABLED=1 astro check"
+  },
+  "keywords": [],
+  "author": "",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@astrojs/react": "^7.1.9",
+    "astro": "^7.4.13",
+    "qrcode": "^1.5.4",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@types/qrcode": "^1.5.6",
+    "@types/react": "^19.3.1",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=22.12"
+  }
+}

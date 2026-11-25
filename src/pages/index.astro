@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import Catalog from '../components/Catalog';
+import { adventures, worlds } from '../content';
+---
+<Base>
+  <section class="hero">
+    <div><span class="eyebrow">OrPiRa Social</span><h1>Grandes ideas.<br />Pequeñas aventuras.</h1>
+      <p>Construyan, experimenten y descubran profesiones juntos. Actividades para familias con niños de 6 a 12 años.</p>
+      <div class="buttons"><a class="button" href="#aventuras">Explorar aventuras</a><a class="button secondary" href="/comunidad/">Preparar un taller</a></div>
+    </div>
+    <img src="/arte/hero.webp" alt="Ilustración de un puente de papel plegado entre dos pilas de libros" width="720" height="420" />
+  </section>
+  <section id="aventuras"><h2>Aventuras para hacer juntos</h2>
+    {adventures.length ? <Catalog items={adventures} worlds={worlds} client:load /> : <p>El catálogo se abrirá cuando terminen las revisiones de las actividades.</p>}
+  </section>
+</Base>

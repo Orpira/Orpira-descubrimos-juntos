@@ -1,0 +1,39 @@
+---
+import { reviewMode } from '../content';
+import '../style.css';
+const { title = 'Descubrimos Juntos', description = 'Aventuras gratuitas para descubrir, crear y aprender en familia.', image = '/arte/hero.webp' } = Astro.props;
+const canonical = Astro.site && new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content={description} />
+<meta name="theme-color" content="#f7f2e6" />
+{(reviewMode || !Astro.site) && <meta name="robots" content="noindex,nofollow" />}
+{canonical && <link rel="canonical" href={canonical} />}
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+{canonical && <meta property="og:url" content={canonical} />}
+{Astro.site && <meta property="og:image" content={new URL(image, Astro.site)} />}
+<link rel="icon" href="/icon-192.png" />
+<link rel="apple-touch-icon" href="/icon-192.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+<title>{title} | OrPiRa Social</title>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="site-header"><div class="frame bar">
+<a class="brand" href="/"><span aria-hidden="true">✳</span> Descubrimos Juntos</a>
+<nav aria-label="Principal"><a href="/#aventuras">Aventuras</a><a href="/comunidad/">Comunidad</a><a href="/pasaporte/">Pasaporte</a></nav>
+</div></header>
+{reviewMode && <aside class="review">Edición de revisión · Actividades pendientes de prueba y aprobación editorial.</aside>}
+<main id="contenido" class="frame"><slot /></main>
+<footer class="frame footer"><strong>OrPiRa Social</strong><span>Descubrir juntos. Crecer juntos.</span><a href="/privacidad/">Privacidad</a><a href="/ayuda/">Ayuda</a></footer>
+<script>
+  if ('serviceWorker' in navigator && import.meta.env.PROD) {
+    window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(console.error));
+  }
+</script>
+</body></html>

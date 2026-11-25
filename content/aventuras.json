@@ -1,0 +1,478 @@
+[
+  {
+    "slug": "el-puente-imposible",
+    "titulo": "El puente imposible",
+    "mundo": "Ingeniería",
+    "edad": [
+      6,
+      12
+    ],
+    "minutos": 25,
+    "nivel": "Inicial",
+    "personas": [
+      2,
+      4
+    ],
+    "icono": "puente",
+    "resumen": "Una hoja de papel puede sostener más de lo que imaginas.",
+    "materiales": [
+      "Papel",
+      "Libros",
+      "Cartón"
+    ],
+    "alternativa": "Usa el reverso de hojas usadas y una tarjeta de cartón grande como carga.",
+    "objetivo": "Comparar cómo cambia la rigidez del papel según su forma.",
+    "mision": "Tu comunidad necesita cruzar un río imaginario. Diseña un puente que soporte una tarjeta.",
+    "pasos": [
+      "Coloca dos libros cerrados sobre la mesa dejando un hueco del ancho de una mano.",
+      "Apoya una hoja plana sobre ambos libros y pon la tarjeta en el centro. Observa qué ocurre.",
+      "Dobla otra hoja en acordeón y repite usando la misma distancia y la misma tarjeta.",
+      "Dibuja las dos formas y explica cuál funcionó mejor y qué cambiarías."
+    ],
+    "seguridad": "Trabajen sobre una mesa estable. Usen libros ligeros y tarjetas grandes. Un adulto supervisa.",
+    "accesibilidad": "Alguien puede describir la forma de los pliegues y guiar la comparación táctil.",
+    "grupo": "Por equipos de tres, repartid las tareas de doblar, probar y describir. Intercambiad diseños.",
+    "aula": "Registrad forma, distancia y resultado en una tabla. Cambiad una variable cada vez.",
+    "reflexion": "¿Dónde has visto estructuras con pliegues o refuerzos?",
+    "profesiones": [
+      "Ingeniería civil",
+      "Arquitectura"
+    ],
+    "fuente": "https://www.invent.org/at-home-learning-resources",
+    "cantidades": [
+      2,
+      2,
+      1
+    ],
+    "estado": "en revisión",
+    "revisada": null
+  },
+  {
+    "slug": "la-torre-resistente",
+    "titulo": "La torre resistente",
+    "mundo": "Ingeniería",
+    "edad": [
+      7,
+      12
+    ],
+    "minutos": 25,
+    "nivel": "Intermedio",
+    "personas": [
+      2,
+      5
+    ],
+    "icono": "torre",
+    "resumen": "Investiga qué hace que una torre se mantenga en pie.",
+    "materiales": [
+      "Papel",
+      "Cinta de papel",
+      "Cartón"
+    ],
+    "alternativa": "Reutiliza hojas impresas y la tapa de una caja.",
+    "objetivo": "Comparar la estabilidad de bases anchas y estrechas.",
+    "mision": "Construye una torre liviana que quede de pie mientras mueves ligeramente su base.",
+    "pasos": [
+      "Sobre una tapa de cartón, monta una torre baja con hojas dobladas y cinta de papel.",
+      "Dibuja el contorno de la base y comprueba si la torre se sostiene sola.",
+      "Eleva la torre añadiendo papel y repite moviendo suavemente el cartón.",
+      "Ensaya una base más ancha con la misma altura y compara."
+    ],
+    "seguridad": "Usen solo papel y cartón liviano. Hagan la prueba sobre la mesa con supervisión adulta.",
+    "accesibilidad": "Marca el ancho de cada base con líneas gruesas que se distingan al tacto o con alto contraste.",
+    "grupo": "Cada equipo construye una base distinta y comparte una observación sin competir.",
+    "aula": "Relacionad estabilidad y anchura a partir de los resultados observados.",
+    "reflexion": "¿Qué cambiarías para poner la misma torre en otra superficie?",
+    "profesiones": [
+      "Ingeniería estructural",
+      "Diseño industrial"
+    ],
+    "fuente": "https://www.invent.org/at-home-learning-resources",
+    "cantidades": [
+      6,
+      1,
+      1
+    ],
+    "estado": "en revisión",
+    "revisada": null
+  },
+  {
+    "slug": "programa-a-un-humano",
+    "titulo": "Programa a un humano",
+    "mundo": "Tecnología",
+    "edad": [
+      6,
+      12
+    ],
+    "minutos": 20,
+    "nivel": "Inicial",
+    "personas": [
+      2,
+      5
+    ],
+    "icono": "robot",
+    "resumen": "Dale instrucciones a un robot que solo hace lo que escucha.",
+    "materiales": [
+      "Papel",
+      "Lápiz"
+    ],
+    "alternativa": "Dibuja el tablero en papel reutilizado y usa el dedo como ficha.",
+    "objetivo": "Crear y depurar una secuencia de instrucciones.",
+    "mision": "Lleva un robot de papel hasta su destino sin saltarse ninguna casilla.",
+    "pasos": [
+      "Dibuja un tablero de cuatro por cuatro. Marca una salida, una meta y dos casillas bloqueadas.",
+      "Una persona dicta izquierda, derecha, arriba o abajo. Otra mueve el dedo de casilla en casilla.",
+      "Si el robot se bloquea, vuelvan a la salida y cambien la instrucción que causó el problema.",
+      "Intercambien papeles. Comparen dos rutas que lleguen a la meta."
+    ],
+    "seguridad": "Representen el recorrido sobre la mesa. Un adulto acompaña la actividad.",
+    "accesibilidad": "Usa un tablero con líneas de relieve y permite dar las órdenes verbalmente o con flechas grandes.",
+    "grupo": "Trabajad por tríos con roles de programador, robot y observador. Rotad los roles.",
+    "aula": "Introducid la repetición agrupando instrucciones consecutivas iguales.",
+    "reflexion": "¿Qué pasa cuando una instrucción admite dos interpretaciones?",
+    "profesiones": [
+      "Desarrollo de software",
+      "Robótica"
+    ],
+    "fuente": "https://www.csunplugged.org/",
+    "cantidades": [
+      1,
+      1
+    ],
+    "estado": "en revisión",
+    "revisada": null
+  },
+  {
+    "slug": "ordenador-de-carton",
+    "titulo": "Construye un ordenador de cartón",
+    "mundo": "Tecnología",
+    "edad": [
+      7,
+      12
+    ],
+    "minutos": 30,
+    "nivel": "Intermedio",
+    "personas": [
+      2,
+      5
+    ],
+    "icono": "ordenador",
+    "resumen": "Sigue la ruta de un dato desde que entra hasta que aparece en pantalla.",
+    "materiales": [
+      "Papel",
+      "Cartón",
+      "Lápiz"
+    ],
+    "alternativa": "Usa tres hojas en lugar de cartón.",
+    "objetivo": "Distinguir entrada, procesamiento y salida mediante una simulación.",
+    "mision": "Representa con cartón cómo una máquina convierte dos números en un resultado.",
+    "pasos": [
+      "Etiqueta tres hojas: entrada, procesador y pantalla.",
+      "Una persona escribe dos números y deja la hoja en la entrada.",
+      "El procesador suma los números en otra hoja. La pantalla muestra el resultado.",
+      "Repetid con una regla distinta, como escoger el mayor, e identificad qué parte cambió."
+    ],
+    "seguridad": "Usen materiales ya preparados. Dejen los aparatos eléctricos fuera de la actividad. Un adulto acompaña.",
+    "accesibilidad": "Identifica cada parte con una forma grande y un nombre leído en voz alta.",
+    "grupo": "Formad equipos de tres y rotad entre las funciones del ordenador.",
+    "aula": "Dibujad el flujo de datos y explicad con un ejemplo cada etapa.",
+    "reflexion": "¿Qué parte tendrías que cambiar para resolver otro tipo de problema?",
+    "profesiones": [
+      "Ingeniería informática",
+      "Soporte técnico"
+    ],
+    "fuente": "https://www.csunplugged.org/",
+    "cantidades": [
+      5,
+      1,
+      2
+    ],
+    "estado": "en revisión",
+    "revisada": null
+  },
+  {
+    "slug": "el-mundo-de-las-sombras",
+    "titulo": "El mundo de las sombras",
+    "mundo": "Ciencia",
+    "edad": [
+      6,
+      12
+    ],
+    "minutos": 20,
+    "nivel": "Inicial",
+    "personas": [
+      2,
+      4
+    ],
+    "icono": "sol",
+    "resumen": "Cambia la distancia y observa cómo se transforma una sombra.",
+    "materiales": [
+      "Papel",
+      "Lápiz",
+      "Linterna",
+      "Cartón"
+    ],
+    "alternativa": "Usa una linterna LED doméstica y el cartón de una caja.",
+    "objetivo": "Observar el efecto de la distancia entre luz, objeto y pantalla.",
+    "mision": "Consigue dos sombras de tamaños distintos con el mismo objeto.",
+    "pasos": [
+      "Coloca una hoja vertical junto a una pared y usa de pantalla el papel.",
+      "Un adulto dirige la linterna hacia el papel. Coloca un cartón entre ambos.",
+      "Traza el borde de la sombra y acerca un poco el cartón a la linterna manteniendo la pantalla fija.",
+      "Dibuja el segundo borde y compara tamaños. Repite el ensayo para comprobar el resultado."
+    ],
+    "seguridad": "Un adulto manipula la linterna. Eviten dirigir el haz hacia los ojos. Mantened iluminada la zona de paso.",
+    "accesibilidad": "Describe el tamaño en voz alta y señala los contornos con trazos gruesos.",
+    "grupo": "Una persona adulta mantiene la luz y cada equipo cambia la posición del cartón por turnos.",
+    "aula": "Anotad la distancia con unidades de mano y comparad los dibujos.",
+    "reflexion": "¿Por qué cambia tu sombra a lo largo del día?",
+    "profesiones": [
+      "Física",
+      "Iluminación escénica"
+    ],
+    "fuente": "https://www.invent.org/at-home-learning-resources",
+    "cantidades": [
+      2,
+      1,
+      1,
+      1
+    ],
+    "estado": "en revisión",
+    "revisada": null
+  },
+  {
+    "slug": "el-misterio-de-las-semillas",
+    "titulo": "El misterio de las semillas",
+    "mundo": "Ciencia",
+    "edad": [
+      8,
+      12
+    ],
+    "minutos": 20,
+    "nivel": "Inicial",
+    "personas": [
+      2,
+      4
+    ],
+    "icono": "planta",
+    "resumen": "Entrena la mirada científica con observaciones de una planta.",
+    "materiales": [
+      "Papel",
+      "Lápiz"
+    ],
+    "alternativa": "Observa una planta desde una ventana o usa un dibujo que muestre tallo y hojas.",
+    "objetivo": "Diferenciar una observación de una explicación provisional.",
+    "mision": "Elabora el cuaderno de observación de una planta y plantea qué te gustaría comprobar.",
+    "pasos": [
+      "Elige con un adulto una planta visible y describe su ubicación sin tocarla.",
+      "Dibuja dos hojas y el tallo. Anota qué detalles puedes comprobar a simple vista.",
+      "Imagina qué pudo ocurrir antes de que tuviera hojas. Distingue esa idea de lo que observaste.",
+      "Vuelve otro día y usa el mismo encuadre para comparar. Anota una pregunta para investigar."
+    ],
+    "seguridad": "Observad sin arrancar, tocar ni ingerir plantas o semillas. Un adulto elige un lugar seguro.",
+    "accesibilidad": "Dicta las observaciones o usa un dibujo de alto contraste y una descripción verbal.",
+    "grupo": "Comparad dos dibujos de la misma planta y formad una lista de observaciones comunes.",
+    "aula": "Separad en dos columnas lo observado y las hipótesis.",
+    "reflexion": "¿Qué necesitarías ver para cambiar tu explicación?",
+    "profesiones": [
+      "Botánica",
+      "Agronomía"
+    ],
+    "fuente": "https://www.invent.org/at-home-learning-resources",
+    "cantidades": [
+      2,
+      1
+    ],
+    "estado": "en revisión",
+    "revisada": null
+  },
+  {
+    "slug": "nuestra-orquesta",
+    "titulo": "Nuestra orquesta",
+    "mundo": "Creatividad",
+    "edad": [
+      6,
+      12
+    ],
+    "minutos": 15,
+    "nivel": "Inicial",
+    "personas": [
+      2,
+      6
+    ],
+    "icono": "musica",
+    "resumen": "Crea una pieza de cuatro pulsos con sonidos suaves y silencios.",
+    "materiales": [
+      "Papel",
+      "Lápiz"
+    ],
+    "alternativa": "Usa gestos, roce de papel o palmadas suaves según las preferencias del grupo.",
+    "objetivo": "Interpretar un ritmo y escuchar a quienes colaboran.",
+    "mision": "Compón y dirige una pieza de cuatro pulsos que todos puedan seguir.",
+    "pasos": [
+      "Dibuja cuatro casillas. Elige dos para sonido y deja las otras para silencio.",
+      "Señala cada casilla con un ritmo constante y hagan juntos el gesto o sonido correspondiente.",
+      "Una persona cambia dos casillas y otra dirige. Repitan la secuencia con distintos roles.",
+      "Junten dos secuencias y marquen con el dedo el comienzo de cada una."
+    ],
+    "seguridad": "Mantengan un volumen cómodo y dejen participar con gestos. Un adulto facilita.",
+    "accesibilidad": "Señala cada pulso con una tarjeta grande y ofrece una versión silenciosa de gestos.",
+    "grupo": "Dos equipos preparan secuencias y luego las dirigen alternativamente.",
+    "aula": "Representad el ritmo con símbolos compartidos y leed la secuencia de otro equipo.",
+    "reflexion": "¿Qué ayuda a que todos entren en el mismo momento?",
+    "profesiones": [
+      "Composición musical",
+      "Dirección musical"
+    ],
+    "fuente": "https://www.thebigdraw.org/about-us/the-big-draw-festival",
+    "cantidades": [
+      1,
+      1
+    ],
+    "estado": "en revisión",
+    "revisada": null
+  },
+  {
+    "slug": "mi-primera-tienda",
+    "titulo": "Mi primera tienda",
+    "mundo": "Emprendimiento",
+    "edad": [
+      7,
+      12
+    ],
+    "minutos": 25,
+    "nivel": "Inicial",
+    "personas": [
+      2,
+      6
+    ],
+    "icono": "tienda",
+    "resumen": "Organiza una tienda imaginaria con un presupuesto de juego.",
+    "materiales": [
+      "Papel",
+      "Lápiz",
+      "Cartón"
+    ],
+    "alternativa": "Apunta las cantidades en una hoja y usa dibujos en vez de objetos.",
+    "objetivo": "Comparar prioridades dentro de un presupuesto ficticio.",
+    "mision": "Compra lo necesario para un taller usando diez puntos imaginarios.",
+    "pasos": [
+      "Dibuja tres materiales de taller y asigna un precio de dos, tres y cinco puntos.",
+      "Una persona explica qué taller quiere montar y elige una combinación con diez puntos disponibles.",
+      "Comprobad la suma juntos y decidid si sobra algo. Buscad una combinación diferente.",
+      "Intercambiad roles y probad con un encargo que tenga otras prioridades."
+    ],
+    "seguridad": "Usen solo cantidades de juego y materiales de papel. Un adulto acompaña.",
+    "accesibilidad": "Lee los precios en voz alta y usa marcas grandes junto al número.",
+    "grupo": "Preparad tarjetas con encargos ficticios y turnos para conversar antes de elegir.",
+    "aula": "Escribid las sumas y comparad las decisiones con el mismo presupuesto.",
+    "reflexion": "¿Qué opción elegirías si el taller cambia de objetivo?",
+    "profesiones": [
+      "Comercio",
+      "Diseño de producto"
+    ],
+    "fuente": "https://www.consumerfinance.gov/consumer-tools/educator-tools/youth-financial-education/",
+    "cantidades": [
+      3,
+      1,
+      1
+    ],
+    "estado": "en revisión",
+    "revisada": null
+  },
+  {
+    "slug": "el-arbol-de-las-culturas",
+    "titulo": "El árbol de las culturas",
+    "mundo": "Convivencia",
+    "edad": [
+      6,
+      12
+    ],
+    "minutos": 30,
+    "nivel": "Inicial",
+    "personas": [
+      2,
+      6
+    ],
+    "icono": "arbol",
+    "resumen": "Reúne maneras de saludar, jugar y dar la bienvenida en un árbol colectivo.",
+    "materiales": [
+      "Papel",
+      "Lápiz",
+      "Cinta de papel"
+    ],
+    "alternativa": "Dibuja hojas directamente en el árbol y añade ideas con lápiz.",
+    "objetivo": "Practicar la escucha y ampliar las maneras de acoger a otras personas.",
+    "mision": "Llena un árbol de ideas de bienvenida elegidas entre todos.",
+    "pasos": [
+      "Dibuja un árbol grande con tres ramas: saludar, jugar e invitar a participar.",
+      "Cada persona añade una palabra, gesto o dibujo que le guste. Puede inventarlo o saltar su turno.",
+      "Quien quiera explica su idea y el grupo propone otra forma de expresar lo mismo.",
+      "Elegid dos ideas para probarlas en un encuentro imaginario."
+    ],
+    "seguridad": "Ofreced participación voluntaria. Usad ejemplos inventados cuando alguien prefiera reservar su historia. Un adulto facilita.",
+    "accesibilidad": "Acepta palabras dictadas, gestos y dibujos. Describe las aportaciones que estén solo en papel.",
+    "grupo": "Formad parejas voluntarias, recoged ideas y alternad quién presenta el dibujo común.",
+    "aula": "Creen una lista de expresiones de bienvenida con apoyos visuales.",
+    "reflexion": "¿Cómo puedes invitar a alguien que aún no conoce el juego?",
+    "profesiones": [
+      "Mediación comunitaria",
+      "Educación social"
+    ],
+    "fuente": "https://www.thebigdraw.org/about-us/the-big-draw-festival",
+    "cantidades": [
+      3,
+      2,
+      1
+    ],
+    "estado": "en revisión",
+    "revisada": null
+  },
+  {
+    "slug": "una-ciudad-para-todos",
+    "titulo": "Una ciudad para todos",
+    "mundo": "Convivencia",
+    "edad": [
+      8,
+      12
+    ],
+    "minutos": 35,
+    "nivel": "Intermedio",
+    "personas": [
+      2,
+      6
+    ],
+    "icono": "ciudad",
+    "resumen": "Diseña rutas y lugares que puedan usar personas con necesidades diferentes.",
+    "materiales": [
+      "Papel",
+      "Lápiz",
+      "Cartón"
+    ],
+    "alternativa": "Basta un mapa dibujado a mano sobre papel reutilizado.",
+    "objetivo": "Identificar barreras en un espacio compartido y proponer mejoras.",
+    "mision": "Dibuja un barrio donde sea sencillo llegar al parque, descansar y orientarse.",
+    "pasos": [
+      "Dibuja una plaza, un parque y una biblioteca unidos por caminos.",
+      "Imagina tres situaciones: una persona con carrito, alguien que busca un sitio tranquilo y otra persona que no conoce el lugar.",
+      "Marca en el mapa dónde habría un problema para cada situación. Añade caminos, bancos o señales según haga falta.",
+      "Pedid a otra persona que recorra el mapa con el dedo y usad su comentario para mejorar una parte."
+    ],
+    "seguridad": "Haced la actividad sobre papel con una persona adulta. No salgáis a probar rutas como parte del taller.",
+    "accesibilidad": "Usa líneas anchas, etiquetas leídas y un recorrido descrito con palabras.",
+    "grupo": "Un equipo dibuja los lugares y otro prueba las rutas. Cambiad los papeles.",
+    "aula": "Incluid una leyenda que combine iconos y palabras y comparad rutas posibles.",
+    "reflexion": "¿Qué mejora propuesta serviría también a alguien que no habías imaginado?",
+    "profesiones": [
+      "Urbanismo",
+      "Diseño de accesibilidad"
+    ],
+    "fuente": "https://www.w3.org/WAI/people-use-web/abilities-barriers/",
+    "cantidades": [
+      2,
+      2,
+      1
+    ],
+    "estado": "en revisión",
+    "revisada": null
+  }
+]

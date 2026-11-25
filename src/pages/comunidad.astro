@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+import { adventures } from '../content';
+const sessions = [
+  ['el-puente-imposible', 'Cooperación'], ['programa-a-un-humano', 'Comunicación'],
+  ['el-misterio-de-las-semillas', 'Observación'], ['nuestra-orquesta', 'Creatividad'],
+  ['mi-primera-tienda', 'Educación financiera'], ['el-arbol-de-las-culturas', 'Convivencia'],
+  ['la-torre-resistente', 'Resolución de problemas'], ['una-ciudad-para-todos', 'Colaboración comunitaria'],
+];
+const program = sessions.flatMap(([slug, objective]) => {
+  const item = adventures.find(adventure => adventure.slug === slug);
+  return item ? [{ item, objective }] : [];
+});
+---
+<Base title="Construimos Juntos">
+<section class="narrow"><h1>Construimos Juntos</h1><p>Actividades cooperativas para bibliotecas, asociaciones, centros educativos y grupos de familias.</p>
+{adventures.length > 0 && <section class="panel"><h2>Prepara un taller</h2>
+<form id="workshop">
+  <div class="filters"><label>Aventura<select id="workshop-adventure">{adventures.map(item => <option value={item.slug} data-group={item.personas[1]} data-materials={JSON.stringify(item.materiales.map((material, index) => [material, item.cantidades[index]]))}>{item.titulo}</option>)}</select></label>
+  <label>Participantes<input id="workshop-size" type="number" min="2" max="120" value="12" required /></label></div>
+  <div class="buttons no-print"><button type="submit">Calcular materiales</button></div>
+</form><div id="workshop-result" role="status"></div></section>}
+{program.length === sessions.length && <section class="panel"><h2>Programa de ocho sesiones</h2><ol>{program.map(({ item, objective }) => <li class="list-row">
+<h3><a href={'/aventuras/' + item.slug + '/'}>{item.titulo}</a></h3><p><strong>{objective} · {item.minutos} min</strong></p>
+<p><strong>Preparación.</strong> Reúne {item.materiales.join(', ').toLocaleLowerCase('es')} para cada equipo de {item.personas.join('–')} personas. Lee la ficha antes de repartir los roles.</p>
+<p>{item.grupo}</p><p>{item.seguridad}</p><p>{item.accesibilidad} Puedes ofrecer las instrucciones con gestos, demostración o en la lengua que el equipo prefiera.</p><p>{item.reflexion}</p>
+</li>)}</ol></section>}
+<section class="panel"><h2>Guía del facilitador</h2><p>Lee las precauciones antes de la sesión, distribuye materiales por equipos y muestra el primer paso. Alterna los roles, ofrece instrucciones visuales y verbales y deja un turno voluntario de cierre. Puedes anotar en papel incidencias y mejoras de la sesión sin nombres.</p></section>
+<div class="buttons no-print"><button id="print-program">Imprimir o guardar como PDF</button><a class="button secondary" href="/#aventuras">Fichas educativas</a><a class="button secondary" href="/organizaciones/">Recursos para organizaciones</a></div>
+</section>
+</Base>
+<script>
+const form = document.querySelector<HTMLFormElement>('#workshop');
+form?.addEventListener('submit', event => {
+  event.preventDefault();
+  const option = document.querySelector<HTMLSelectElement>('#workshop-adventure')?.selectedOptions[0];
+  const participants = document.querySelector<HTMLInputElement>('#workshop-size')?.valueAsNumber ?? 0;
+  const output = document.querySelector('#workshop-result');
+  if (!option || !output || !Number.isInteger(participants) || participants < 2 || participants > 120) return;
+  const groups = Math.ceil(participants / Number(option.dataset.group));
+  const label = groups === 1 ? 'equipo' : 'equipos';
+  const small = Math.floor(participants / groups);
+  const large = participants % groups;
+  const split = large ? small + '–' + (small + 1) : String(small);
+  const materials: [string, number][] = JSON.parse(option.dataset.materials ?? '[]');
+  const description = document.createElement('p');
+  description.textContent = option.text + ': ' + groups + ' ' + label + ' de ' + split + ' personas.';
+  const list = document.createElement('ul');
+  for (const [material, quantity] of materials) {
+    const line = document.createElement('li');
+    line.textContent = material + ': ' + (groups * quantity) + ' en total (' + quantity + ' por equipo).';
+    list.append(line);
+  }
+  output.replaceChildren(description, list);
+});
+document.querySelector('#print-program')?.addEventListener('click', () => window.print());
+</script>

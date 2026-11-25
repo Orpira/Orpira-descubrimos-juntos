@@ -1,0 +1,81 @@
+---
+import Base from '../layouts/Base.astro';
+import { adventures } from '../content';
+---
+<Base title="Pasaporte">
+<section class="narrow">
+<h1>Mi pasaporte</h1><p>Tus sellos, favoritos y fichas descargadas se guardan en este navegador.</p>
+{['Sellos', 'Favoritos', 'Descargas'].map((title, index) => <section class="panel" data-section={index}>
+  <h2>{title}</h2><p data-empty>Aún no hay fichas en esta sección.</p>
+  <ul>{adventures.map(item => <li hidden data-slug={item.slug} data-world={item.mundo}><a href={'/aventuras/' + item.slug + '/'}>{item.titulo}</a> · {item.mundo}</li>)}</ul>
+</section>)}
+{adventures.length > 0 && <section class="panel no-print">
+<h2>Descargar un mundo</h2>
+<form id="collection"><div class="filters"><label>Mundo<select id="collection-world">{[...new Set(adventures.map(item => item.mundo))].map(world => <option>{world}</option>)}</select></label></div>
+<div class="buttons"><button type="submit">Guardar colección sin conexión</button></div></form>
+<p id="collection-result" role="status"></p></section>}
+<p id="worlds"></p>
+<div class="buttons no-print"><button id="print">Imprimir pasaporte</button><button id="export" class="secondary">Exportar pasaporte</button><a class="button secondary" href="/privacidad/">Administrar datos locales</a></div>
+</section>
+</Base>
+<script>
+import { availableOffline, load, setOffline } from '../local';
+async function render() {
+  const data = load();
+  const worlds = new Set();
+  for (const section of document.querySelectorAll<HTMLElement>('[data-section]')) {
+    let count = 0;
+    for (const item of section.querySelectorAll<HTMLLIElement>('[data-slug]')) {
+      const slug = item.dataset.slug ?? '';
+      const visible = section.dataset.section === '0' ? data.completed.includes(slug)
+        : section.dataset.section === '1' ? data.favorites.includes(slug)
+        : await availableOffline('/aventuras/' + slug + '/').catch(() => false);
+      if (visible) {
+        item.hidden = false;
+        count++;
+        if (section.dataset.section === '0') worlds.add(item.dataset.world);
+      }
+    }
+    if (count) section.querySelector<HTMLElement>('[data-empty]')?.setAttribute('hidden', '');
+  }
+  const summary = document.querySelector('#worlds');
+  if (summary && worlds.size) summary.textContent = 'Mundos explorados: ' + [...worlds].join(', ');
+}
+void render();
+document.querySelector<HTMLFormElement>('#collection')?.addEventListener('submit', async event => {
+  event.preventDefault();
+  const form = event.currentTarget as HTMLFormElement;
+  const button = form.querySelector<HTMLButtonElement>('button');
+  const status = document.querySelector('#collection-result');
+  const world = document.querySelector<HTMLSelectElement>('#collection-world')?.value;
+  const items = [...document.querySelectorAll<HTMLLIElement>('[data-section="2"] [data-slug]')]
+    .filter(item => item.dataset.world === world);
+  if (!button || !status || items.length === 0) return;
+  button.disabled = true;
+  let saved = 0;
+  try {
+    for (const item of items) {
+      const path = '/aventuras/' + item.dataset.slug + '/';
+      try {
+        if (!(await availableOffline(path))) await setOffline(path, true);
+        saved++;
+      } catch {}
+    }
+    status.textContent = saved === items.length
+      ? 'Colección disponible sin conexión.'
+      : saved + ' de ' + items.length + ' fichas guardadas. Vuelve a intentarlo con conexión.';
+    await render();
+  } finally {
+    button.disabled = false;
+  }
+});
+document.querySelector('#print')?.addEventListener('click', () => window.print());
+document.querySelector('#export')?.addEventListener('click', () => {
+  const url = URL.createObjectURL(new Blob([JSON.stringify(load(), null, 2)], { type: 'application/json' }));
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'pasaporte.json';
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
+</script>

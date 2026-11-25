@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Recursos para organizaciones">
+<section class="narrow">
+<h1>Recursos para organizaciones</h1>
+<p>Descubrimos Juntos ayuda a bibliotecas, centros y asociaciones a organizar actividades prácticas con familias. Cada ficha propone una misión, precauciones, materiales y adaptaciones para un taller.</p>
+<section class="panel"><h2>Propón una primera sesión</h2>
+<ol><li>Elige una ficha corta y comprueba que funciona en tu espacio.</li><li>Prepara los materiales por equipo e imprime una ficha por mesa.</li><li>Invita a familias a participar con una persona adulta y reparte roles voluntarios.</li><li>Cierra con una pregunta sobre lo aprendido y una idea para el próximo encuentro.</li></ol>
+</section>
+<section class="panel"><h2>Prepara una demostración</h2>
+<p>Enseña los materiales, muestra un paso que todo el grupo pueda reproducir y comparte la ficha. Para una introducción de 45 segundos, abre con la misión, muestra una prueba y acaba con una pregunta.</p>
+<h3>Preguntas frecuentes</h3>
+<p><strong>¿Hace falta una cuenta?</strong> Se puede abrir e imprimir la ficha directamente.</p>
+<p><strong>¿Qué puede anotar el equipo?</strong> Las mejoras e incidencias que observe, evitando identificar participantes.</p>
+<p><strong>¿Hay un programa de varias sesiones?</strong> Consulta Construimos Juntos y adapta su duración y sus materiales a tu grupo.</p>
+</section>
+<div class="buttons no-print"><a class="button" href="/comunidad/">Abrir el programa</a><button class="secondary" id="print-kit">Imprimir presentación</button></div>
+</section>
+</Base>
+<script>
+document.querySelector('#print-kit')?.addEventListener('click', () => window.print());
+</script>

@@ -1,0 +1,29 @@
+name: Calidad
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: npm run check && npm test && npm audit --audit-level=high
+      - run: npm run build && test ! -d dist/aventuras
+      - run: python -m pip install playwright==1.62.0 && python -m playwright install --with-deps chromium
+      - run: |
+          PUBLIC_REVIEW_MODE=true PUBLIC_SITE_URL=http://localhost:4321 npm run build
+          python3 -m http.server 4321 --bind 127.0.0.1 --directory dist > /tmp/descubrimos-preview.log 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl -fsS http://localhost:4321/ -o /dev/null; then break; fi
+            sleep 1
+          done
+          python tests/browser.py
