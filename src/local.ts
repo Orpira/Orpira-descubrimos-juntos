@@ -1,4 +1,5 @@
 export const storageKey = 'descubrimos-juntos:v1';
+export const workshopKey = 'descubrimos-juntos:workshop:v1';
 export const downloadCache = 'descubrimos-juntos:downloads';
 type Progress = Record<string, number[]>;
 export type LocalData = { favorites: string[]; completed: string[]; progress: Progress };

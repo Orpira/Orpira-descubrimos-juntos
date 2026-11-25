@@ -3,6 +3,7 @@
 | Dato o recurso | Ubicación | Finalidad y salida |
 | --- | --- | --- |
 | IDs de fichas, pasos y sellos | localStorage del navegador | Pasaporte y pasos voluntarios. Borrado en Privacidad o ajustes del sitio. |
+| Ficha y tamaño del taller | localStorage del navegador | Guardado voluntario. Se puede eliminar desde Comunidad o Privacidad. |
 | Archivos de la aplicación | Cache Storage | Uso sin conexión y actualización. Fichas eliminables individualmente o desde Privacidad. |
 | Solicitudes HTTP | Alojamiento por definir | Validar qué registros conserva el proveedor, base aplicable, acceso y plazos. |
 | Exportación JSON | Equipo del usuario | Copia voluntaria bajo control de quien la descarga. |

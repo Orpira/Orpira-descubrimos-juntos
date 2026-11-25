@@ -23,3 +23,11 @@ test('Combina filtros y acepta los límites de edad y participantes', () => {
   assert.deepEqual(result.map(item => item.slug), ['el-puente-imposible']);
   assert.deepEqual(filterAdventures(items, { world: 'Ciencia', duration: '15' }), []);
 });
+
+test('Reparte personas entre equipos con una diferencia máxima de una', async () => {
+  const { splitTeams } = await import('../src/workshop.mjs');
+  assert.deepEqual(splitTeams(2, 4), { count: 1, sizes: '2' });
+  assert.deepEqual(splitTeams(12, 4), { count: 3, sizes: '4' });
+  assert.deepEqual(splitTeams(13, 4), { count: 4, sizes: '3–4' });
+  assert.deepEqual(splitTeams(120, 6), { count: 20, sizes: '6' });
+});
