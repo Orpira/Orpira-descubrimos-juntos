@@ -2,7 +2,7 @@
 
 ## Preparación
 
-Probar «El puente imposible» con otra persona adulta antes de convocar a familias. Revisar que el papel, los libros y el cartón se consiguen fácilmente. Estimar el número de personas en Comunidad, guardar el taller e imprimir su hoja y la ficha de la actividad. Si el lugar tiene conexión irregular, descargar la ficha y abrirla con la red desactivada antes de salir.
+Probar «El puente imposible» con otra persona adulta antes de convocar a familias. Revisar que el papel, los libros y el cartón se consiguen fácilmente. Estimar el número de personas en Comunidad, guardar el taller e imprimir su hoja y la ficha de la actividad. Si el lugar tiene conexión irregular, usar «Descargar ficha del taller» desde el planificador y abrirla con la red desactivada antes de salir.
 
 ## Sesión
 
@@ -12,6 +12,8 @@ Probar «El puente imposible» con otra persona adulta antes de convocar a famil
 4. Cerrar comparando los dos diseños. Preguntar qué cambiaría cada equipo para que el puente funcione mejor.
 
 ## Registro para el facilitador
+
+Desde Comunidad → Evaluar taller, prepara e imprime un resumen agregado. Las respuestas permanecen en la página y no se guardan en el dispositivo. Si hubo una interrupción por seguridad, el resumen indica que se debe revisar y volver a ensayar la actividad antes de repetirla.
 
 - Ficha y versión.
 - Duración real y si los materiales resultaron suficientes.

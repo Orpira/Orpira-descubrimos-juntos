@@ -1,0 +1,85 @@
+---
+import Base from '../layouts/Base.astro';
+import { adventures } from '../content';
+
+const fields = [
+  { id: 'materials', label: '¿Alcanzaron los materiales?', options: ['Sí', 'En parte', 'No'] },
+  { id: 'instructions', label: '¿Cómo funcionaron las instrucciones?', options: ['Claras desde el inicio', 'Necesitaron una demostración', 'Necesitan revisión'] },
+  { id: 'safety', label: '¿Se interrumpió la actividad por seguridad?', options: ['Sí', 'No'] },
+  { id: 'repeat', label: '¿Los adultos que opinaron repetirían la sesión?', options: ['La mayoría sí', 'Opiniones divididas', 'La mayoría no'] },
+];
+---
+<Base title="Evaluación del taller">
+<section class="narrow">
+<a class="no-print" href="/comunidad/">← Construimos Juntos</a>
+<h1>Evalúa el taller</h1>
+<p>Para la persona facilitadora. Registra una valoración del grupo. Las respuestas se mantienen en esta página mientras la tienes abierta.</p>
+{adventures.length ? <>
+<form id="evaluation" class="panel no-print" autocomplete="off" hidden>
+  <div class="filters">
+    <div><label for="activity">Ficha utilizada</label>
+    <select id="activity" name="activity" required>
+      <option value="">Elige una ficha</option>
+      {adventures.map(item => <option value={item.slug}>{item.titulo} · v{item.version}</option>)}
+    </select></div>
+    <div><label for="minutes">Duración real en minutos</label>
+    <input id="minutes" name="minutes" type="number" min="1" max="360" /></div>
+    {fields.map(field => <div><label for={field.id}>{field.label}</label>
+      <select id={field.id} name={field.id} data-label={field.label}>
+        <option value="">Sin respuesta</option>
+        {field.options.map(option => <option>{option}</option>)}
+      </select></div>)}
+  </div>
+  <div class="buttons"><button type="submit">Preparar resumen</button><button type="reset" class="secondary">Limpiar respuestas</button></div>
+</form>
+<section class="panel" id="evaluation-summary" hidden>
+  <h2>Resumen de la sesión</h2>
+  <p id="summary-activity"></p>
+  <dl id="summary-results"></dl>
+  <p id="safety-notice" hidden>Antes de repetir esta actividad, revisa la causa de la interrupción con el equipo facilitador y vuelve a ensayarla.</p>
+  <button id="print-summary" class="no-print" type="button">Imprimir resumen</button>
+</section>
+</> : <p>La ficha de evaluación estará disponible cuando haya aventuras publicadas.</p>}
+</section>
+</Base>
+<script>
+const form = document.querySelector<HTMLFormElement>('#evaluation');
+const summary = document.querySelector<HTMLElement>('#evaluation-summary');
+const activity = document.querySelector<HTMLSelectElement>('#activity');
+const results = document.querySelector('#summary-results');
+const summaryActivity = document.querySelector('#summary-activity');
+const notice = document.querySelector<HTMLElement>('#safety-notice');
+
+function hideSummary() {
+  if (summary) summary.hidden = true;
+}
+
+form?.addEventListener('input', hideSummary);
+form?.addEventListener('reset', hideSummary);
+form?.addEventListener('submit', event => {
+  event.preventDefault();
+  if (!summary || !activity || !results || !summaryActivity || !notice) return;
+  const input = new FormData(form);
+  const minutes = input.get('minutes');
+  const answers = [...form.querySelectorAll<HTMLSelectElement>('select[data-label]')]
+    .map(field => [field.dataset.label ?? '', field.value || 'Sin respuesta']);
+  answers.unshift(['Duración real', minutes ? minutes + ' min' : 'Sin respuesta']);
+  summaryActivity.textContent = activity.selectedOptions[0].text;
+  results.replaceChildren(...answers.flatMap(([label, value]) => {
+    const term = document.createElement('dt');
+    term.textContent = label;
+    const definition = document.createElement('dd');
+    definition.textContent = value;
+    return [term, definition];
+  }));
+  notice.hidden = input.get('safety') !== 'Sí';
+  summary.hidden = false;
+  summary.querySelector('button')?.focus();
+});
+document.querySelector('#print-summary')?.addEventListener('click', () => window.print());
+if (form) form.hidden = false;
+</script>
+<style>
+dt { font-weight: 700; }
+dd { margin: .25rem 0 1rem; }
+</style>
