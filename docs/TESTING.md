@@ -16,3 +16,7 @@ Entorno local Node.js 24.22.3 y Chromium 158.0.8127.0 en Linux. Playwright ejecu
 | QR | Se decodificaron las diez imágenes PNG y se comprobaron sus URLs de localhost. |
 
 Los flujos están en `tests/` y se repiten mediante `.github/workflows/quality.yml`. Pendientes ejecución de CI en GitHub, pruebas físicas y revisión editorial de fichas, auditoría WCAG completa, impresión física y verificación de instalación y offline en Firefox, Safari, Android e iOS. La cabecera CSP necesita validación con el alojamiento elegido.
+
+## Edición 0.2.0
+
+El control de tipos pasó en 22 archivos y las tres pruebas unitarias pasaron. La prueba de Chromium verificó que un taller de 13 participantes se divide en cuatro equipos de 3–4 personas, se guarda y recupera con la red desactivada, se imprime de forma aislada y se elimina al borrar los datos desde Privacidad. Se recompilaron ambos modos y se confirmó que la edición pública sigue excluyendo las diez fichas en revisión.

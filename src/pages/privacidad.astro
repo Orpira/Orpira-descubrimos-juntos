@@ -3,22 +3,23 @@ import Base from '../layouts/Base.astro';
 ---
 <Base title="Privacidad">
 <section class="narrow"><h1>Privacidad</h1>
-<p>Las fichas se pueden abrir sin cuenta. Los favoritos, el pasaporte y los pasos que decidas guardar se quedan en este navegador. Las fichas sin conexión se guardan en la caché local.</p>
+<p>Las fichas se pueden abrir sin cuenta. Los favoritos, el pasaporte y los pasos que decidas guardar se quedan en este navegador. Si guardas un taller, aquí se conserva la ficha elegida y el tamaño del grupo. Las fichas sin conexión se guardan en la caché local.</p>
 <p>En dispositivos compartidos, otras personas con acceso al mismo perfil del navegador pueden ver lo que guardes. Puedes borrar los datos desde aquí o desde los ajustes del navegador.</p>
 <p>La versión de revisión no incorpora analítica ni publicidad. Los registros técnicos se revisarán cuando se seleccione el alojamiento de producción.</p>
-<button type="button" id="clear">Eliminar progreso, favoritos y descargas</button>
+<button type="button" id="clear">Eliminar progreso, favoritos, taller y descargas</button>
 <p class="status" id="clear-result" role="status"></p>
 </section>
 </Base>
 <script>
-import { downloadCache, storageKey } from '../local';
+import { downloadCache, storageKey, workshopKey } from '../local';
 document.querySelector('#clear')?.addEventListener('click', async () => {
-  if (!window.confirm('¿Quieres eliminar los sellos, pasos, favoritos y fichas descargadas en este navegador?')) return;
+  if (!window.confirm('¿Quieres eliminar los sellos, pasos, favoritos, taller y fichas descargadas en este navegador?')) return;
   const status = document.querySelector('#clear-result');
   try {
     localStorage.removeItem(storageKey);
+    localStorage.removeItem(workshopKey);
     if ('caches' in window) await caches.delete(downloadCache);
-    if (status) status.textContent = 'Progreso, favoritos y fichas eliminados.';
+    if (status) status.textContent = 'Progreso, favoritos, taller y fichas eliminados.';
   } catch {
     if (status) status.textContent = 'El navegador no pudo completar el borrado. Puedes revisar los datos del sitio en sus ajustes.';
   }

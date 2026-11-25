@@ -32,3 +32,5 @@ La prueba de navegador espera la compilación de revisión ya servida en el puer
 ## Documentación
 
 [Documento maestro](docs/DOCUMENTO_MAESTRO.md) · [Estudio competitivo](docs/COMPETITIVE_RESEARCH.md) · [Arquitectura](docs/ARCHITECTURE.md) · [Backlog](docs/BACKLOG.md) · [Pruebas](docs/TESTING.md) · [Despliegue](docs/DEPLOYMENT.md)
+
+[Protocolo del piloto comunitario](docs/PILOTO_COMUNITARIO.md)

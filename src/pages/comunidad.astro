@@ -13,13 +13,20 @@ const program = sessions.flatMap(([slug, objective]) => {
 });
 ---
 <Base title="Construimos Juntos">
-<section class="narrow"><h1>Construimos Juntos</h1><p>Actividades cooperativas para bibliotecas, asociaciones, centros educativos y grupos de familias.</p>
-{adventures.length > 0 && <section class="panel"><h2>Prepara un taller</h2>
-<form id="workshop">
-  <div class="filters"><label>Aventura<select id="workshop-adventure">{adventures.map(item => <option value={item.slug} data-group={item.personas[1]} data-materials={JSON.stringify(item.materiales.map((material, index) => [material, item.cantidades[index]]))}>{item.titulo}</option>)}</select></label>
+<section class="narrow workshop-page"><h1>Construimos Juntos</h1><p>Actividades cooperativas para bibliotecas, asociaciones, centros educativos y grupos de familias.</p>
+{adventures.length > 0 && <section class="panel" id="workshop-sheet"><h2>Prepara un taller</h2>
+<form id="workshop" class="no-print">
+  <div class="filters"><label>Aventura<select id="workshop-adventure">{adventures.map(item => <option value={item.slug} data-group={item.personas[1]} data-min={item.personas[0]} data-minutes={item.minutos} data-safety={item.seguridad} data-materials={JSON.stringify(item.materiales.map((material, index) => [material, item.cantidades[index]]))}>{item.titulo}</option>)}</select></label>
   <label>Participantes<input id="workshop-size" type="number" min="2" max="120" value="12" required /></label></div>
   <div class="buttons no-print"><button type="submit">Calcular materiales</button></div>
-</form><div id="workshop-result" role="status"></div></section>}
+</form><div id="workshop-result" role="status"></div>
+<div class="buttons no-print" id="workshop-actions" hidden>
+  <button id="save-workshop" class="secondary" type="button">Guardar taller en este dispositivo</button>
+  <button id="print-workshop" class="secondary" type="button">Imprimir hoja del taller</button>
+</div>
+<button id="forget-workshop" class="secondary no-print" type="button" hidden>Eliminar taller guardado</button>
+<p id="workshop-message" class="status no-print" aria-live="polite"></p>
+</section>}
 {program.length === sessions.length && <section class="panel"><h2>Programa de ocho sesiones</h2><ol>{program.map(({ item, objective }) => <li class="list-row">
 <h3><a href={'/aventuras/' + item.slug + '/'}>{item.titulo}</a></h3><p><strong>{objective} · {item.minutos} min</strong></p>
 <p><strong>Preparación.</strong> Reúne {item.materiales.join(', ').toLocaleLowerCase('es')} para cada equipo de {item.personas.join('–')} personas. Lee la ficha antes de repartir los roles.</p>
@@ -29,29 +36,105 @@ const program = sessions.flatMap(([slug, objective]) => {
 <div class="buttons no-print"><button id="print-program">Imprimir o guardar como PDF</button><a class="button secondary" href="/#aventuras">Fichas educativas</a><a class="button secondary" href="/organizaciones/">Recursos para organizaciones</a></div>
 </section>
 </Base>
+<style>
+  @media print {
+    :global(html[data-print="workshop"]) .workshop-page > :not(#workshop-sheet) { display: none; }
+  }
+</style>
 <script>
+import { workshopKey } from '../local';
+import { splitTeams } from '../workshop.mjs';
+
 const form = document.querySelector<HTMLFormElement>('#workshop');
+const select = document.querySelector<HTMLSelectElement>('#workshop-adventure');
+const size = document.querySelector<HTMLInputElement>('#workshop-size');
+const output = document.querySelector('#workshop-result');
+const actions = document.querySelector<HTMLElement>('#workshop-actions');
+const forget = document.querySelector<HTMLButtonElement>('#forget-workshop');
+const message = document.querySelector('#workshop-message');
+const say = (text: string) => { if (message) message.textContent = text; };
+
+function renderWorkshop() {
+  const option = select?.selectedOptions[0];
+  const participants = size?.valueAsNumber ?? 0;
+  if (!option || !output || !size?.validity.valid || !Number.isInteger(participants)) return false;
+
+  const groups = splitTeams(participants, Number(option.dataset.group));
+  const description = document.createElement('p');
+  const label = groups.count === 1 ? 'equipo' : 'equipos';
+  description.textContent = option.text + ': ' + groups.count + ' ' + label + ' de ' + groups.sizes + ' personas.';
+  const info = document.createElement('p');
+  info.textContent = participants + ' participantes · ' + option.dataset.minutes + ' min estimados.';
+  const list = document.createElement('ul');
+  const materials: [string, number][] = JSON.parse(option.dataset.materials ?? '[]');
+  for (const [material, quantity] of materials) {
+    const item = document.createElement('li');
+    item.textContent = material + ': ' + (groups.count * quantity) + ' en total (' + quantity + ' por equipo).';
+    list.append(item);
+  }
+  const safety = document.createElement('p');
+  safety.textContent = 'Antes del taller. ' + option.dataset.safety;
+  const link = document.createElement('a');
+  link.href = '/aventuras/' + option.value + '/';
+  link.textContent = 'Abrir ficha de la actividad';
+  const note = document.createElement('p');
+  note.textContent = 'Algún equipo es más pequeño que el recomendado para esta aventura. Adapta los roles antes de empezar.';
+  output.replaceChildren(description, info, list, safety, link);
+  if (Math.floor(participants / groups.count) < Number(option.dataset.min)) output.append(note);
+  if (actions) actions.hidden = false;
+  return true;
+}
+
 form?.addEventListener('submit', event => {
   event.preventDefault();
-  const option = document.querySelector<HTMLSelectElement>('#workshop-adventure')?.selectedOptions[0];
-  const participants = document.querySelector<HTMLInputElement>('#workshop-size')?.valueAsNumber ?? 0;
-  const output = document.querySelector('#workshop-result');
-  if (!option || !output || !Number.isInteger(participants) || participants < 2 || participants > 120) return;
-  const groups = Math.ceil(participants / Number(option.dataset.group));
-  const label = groups === 1 ? 'equipo' : 'equipos';
-  const small = Math.floor(participants / groups);
-  const large = participants % groups;
-  const split = large ? small + '–' + (small + 1) : String(small);
-  const materials: [string, number][] = JSON.parse(option.dataset.materials ?? '[]');
-  const description = document.createElement('p');
-  description.textContent = option.text + ': ' + groups + ' ' + label + ' de ' + split + ' personas.';
-  const list = document.createElement('ul');
-  for (const [material, quantity] of materials) {
-    const line = document.createElement('li');
-    line.textContent = material + ': ' + (groups * quantity) + ' en total (' + quantity + ' por equipo).';
-    list.append(line);
-  }
-  output.replaceChildren(description, list);
+  renderWorkshop();
 });
-document.querySelector('#print-program')?.addEventListener('click', () => window.print());
+form?.addEventListener('input', () => {
+  output?.replaceChildren();
+  if (actions) actions.hidden = true;
+  say('');
+});
+
+try {
+  const previous = JSON.parse(localStorage.getItem(workshopKey) ?? 'null');
+  if (previous && select && size && [...select.options].some(option => option.value === previous.slug)
+    && Number.isInteger(previous.size) && previous.size >= 2 && previous.size <= 120) {
+    select.value = previous.slug;
+    size.value = String(previous.size);
+    renderWorkshop();
+    if (forget) forget.hidden = false;
+  }
+} catch {
+  say('El taller guardado no está disponible.');
+}
+
+document.querySelector('#save-workshop')?.addEventListener('click', () => {
+  if (!select || !size || !renderWorkshop()) return;
+  try {
+    localStorage.setItem(workshopKey, JSON.stringify({ slug: select.value, size: size.valueAsNumber }));
+    if (forget) forget.hidden = false;
+    say('Taller guardado en este dispositivo.');
+  } catch {
+    say('El navegador no pudo guardar el taller.');
+  }
+});
+forget?.addEventListener('click', () => {
+  try {
+    localStorage.removeItem(workshopKey);
+    forget.hidden = true;
+    say('Taller guardado eliminado.');
+  } catch {
+    say('El navegador no pudo eliminar el taller.');
+  }
+});
+
+document.querySelector('#print-workshop')?.addEventListener('click', () => {
+  document.documentElement.dataset.print = 'workshop';
+  window.print();
+});
+window.addEventListener('afterprint', () => { delete document.documentElement.dataset.print; });
+document.querySelector('#print-program')?.addEventListener('click', () => {
+  delete document.documentElement.dataset.print;
+  window.print();
+});
 </script>
