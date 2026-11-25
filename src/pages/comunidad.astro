@@ -22,6 +22,7 @@ const program = sessions.flatMap(([slug, objective]) => {
 </form><div id="workshop-result" role="status"></div>
 <div class="buttons no-print" id="workshop-actions" hidden>
   <button id="save-workshop" class="secondary" type="button">Guardar taller en este dispositivo</button>
+  <button id="download-workshop" class="secondary" type="button">Descargar ficha del taller</button>
   <button id="print-workshop" class="secondary" type="button">Imprimir hoja del taller</button>
 </div>
 <button id="forget-workshop" class="secondary no-print" type="button" hidden>Eliminar taller guardado</button>
@@ -33,7 +34,7 @@ const program = sessions.flatMap(([slug, objective]) => {
 <p>{item.grupo}</p><p>{item.seguridad}</p><p>{item.accesibilidad} Puedes ofrecer las instrucciones con gestos, demostración o en la lengua que el equipo prefiera.</p><p>{item.reflexion}</p>
 </li>)}</ol></section>}
 <section class="panel"><h2>Guía del facilitador</h2><p>Lee las precauciones antes de la sesión, distribuye materiales por equipos y muestra el primer paso. Alterna los roles, ofrece instrucciones visuales y verbales y deja un turno voluntario de cierre. Puedes anotar en papel incidencias y mejoras de la sesión sin nombres.</p></section>
-<div class="buttons no-print"><button id="print-program">Imprimir o guardar como PDF</button><a class="button secondary" href="/#aventuras">Fichas educativas</a><a class="button secondary" href="/organizaciones/">Recursos para organizaciones</a></div>
+<div class="buttons no-print"><button id="print-program">Imprimir o guardar como PDF</button><a class="button secondary" href="/#aventuras">Fichas educativas</a>{adventures.length > 0 && <a class="button secondary" href="/evaluacion/">Evaluar taller</a>}<a class="button secondary" href="/organizaciones/">Recursos para organizaciones</a></div>
 </section>
 </Base>
 <style>
@@ -42,7 +43,7 @@ const program = sessions.flatMap(([slug, objective]) => {
   }
 </style>
 <script>
-import { workshopKey } from '../local';
+import { availableOffline, setOffline, workshopKey } from '../local';
 import { splitTeams } from '../workshop.mjs';
 
 const form = document.querySelector<HTMLFormElement>('#workshop');
@@ -125,6 +126,28 @@ forget?.addEventListener('click', () => {
     say('Taller guardado eliminado.');
   } catch {
     say('El navegador no pudo eliminar el taller.');
+  }
+});
+
+const download = document.querySelector<HTMLButtonElement>('#download-workshop');
+download?.addEventListener('click', async () => {
+  if (!select?.value || !download) return;
+  const title = select.selectedOptions[0].text;
+  const path = '/aventuras/' + select.value + '/';
+  download.disabled = true;
+  try {
+    if (!(await availableOffline(path))) {
+      if (!navigator.serviceWorker?.controller) {
+        say('La aplicación aún no está lista para descargar fichas. Usa la vista previa de revisión y vuelve a intentarlo con conexión.');
+        return;
+      }
+      await setOffline(path, true);
+    }
+    say('«' + title + '» está disponible sin conexión en Pasaporte → Descargas.');
+  } catch {
+    say('No se pudo descargar «' + title + '». Comprueba la conexión y el espacio disponible.');
+  } finally {
+    download.disabled = false;
   }
 });
 
