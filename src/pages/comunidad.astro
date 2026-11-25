@@ -20,6 +20,16 @@ const program = sessions.flatMap(([slug, objective]) => {
   <label>Participantes<input id="workshop-size" type="number" min="2" max="120" value="12" required /></label></div>
   <div class="buttons no-print"><button type="submit">Calcular materiales</button></div>
 </form><div id="workshop-result" role="status"></div>
+{adventures.map(item => <template id={'workshop-guide-' + item.slug}>
+  <div class="workshop-guide">
+    <h3>Cómo facilitar la actividad</h3>
+    <p>{item.grupo}</p>
+    <ol>{item.pasos.map(step => <li>{step}</li>)}</ol>
+    <p><strong>Adaptación accesible.</strong> {item.accesibilidad}</p>
+    <p><strong>Pregunta de cierre.</strong> {item.reflexion}</p>
+    <p>Ficha v{item.version}{item.estado === 'en revisión' ? ' · Material en revisión' : ''}</p>
+  </div>
+</template>)}
 <div class="buttons no-print" id="workshop-actions" hidden>
   <button id="save-workshop" class="secondary" type="button">Guardar taller en este dispositivo</button>
   <button id="download-workshop" class="secondary" type="button">Descargar ficha del taller</button>
@@ -39,6 +49,8 @@ const program = sessions.flatMap(([slug, objective]) => {
 </Base>
 <style>
   @media print {
+    :global(html[data-print="workshop"]) #workshop-sheet { break-inside: auto; }
+    :global(html[data-print="workshop"]) .workshop-guide li { break-inside: avoid; }
     :global(html[data-print="workshop"]) .workshop-page > :not(#workshop-sheet) { display: none; }
   }
 </style>
@@ -82,6 +94,9 @@ function renderWorkshop() {
   note.textContent = 'Algún equipo es más pequeño que el recomendado para esta aventura. Adapta los roles antes de empezar.';
   output.replaceChildren(description, info, list, safety, link);
   if (Math.floor(participants / groups.count) < Number(option.dataset.min)) output.append(note);
+  link.classList.add('no-print');
+  const guide = document.getElementById('workshop-guide-' + option.value);
+  if (guide instanceof HTMLTemplateElement) output.append(guide.content.cloneNode(true));
   if (actions) actions.hidden = false;
   return true;
 }

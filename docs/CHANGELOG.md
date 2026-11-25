@@ -14,3 +14,4 @@
 - El facilitador puede preparar un resumen imprimible de la evaluación agregada, incluso sin conexión. Si se indica una interrupción por seguridad, el resumen pide revisar y ensayar de nuevo la actividad.
 - El planificador descarga la ficha del taller directamente y confirma dónde encontrarla sin conexión.
 - Las descargas de ficha, colección y taller comprueban si la aplicación está lista para funcionar sin conexión y explican cómo continuar cuando no lo está.
+- La hoja imprimible del taller incorpora la guía de facilitación, los pasos, una adaptación accesible y la pregunta de cierre.
